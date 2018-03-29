@@ -2,7 +2,7 @@ from flask import Flask, render_template, flash, url_for, session, logging, requ
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, PasswordField, validators
 from werkzeug.security import check_password_hash, generate_password_hash
-from data import user_data, User
+from data import user_data, User, category_data, Categories
 from functools import wraps
 app = Flask(__name__)
 app.secret_key = 'its-secret'
@@ -59,7 +59,7 @@ def login():
         email = request.form['email']
         user_password = request.form['password']
         email = hash(email)
-        if (email in user_data) and  check_password_hash(user_data[email]['Password'], user_password):
+        if (email in user_data) and check_password_hash(user_data[email]['Password'], user_password):
             session['logged_in'] = True
             session['email'] = email
             flash('You are now logged in', 'green')
@@ -92,10 +92,46 @@ def logout():
     return redirect(url_for('login'))
 
 
+class CategoryForm(FlaskForm):
+    """create categories platform for authorized user"""
+    category_name = StringField('Category', [validators.Length(min=1, max=50)])
+
+
+@app.route('/category', methods=['GET', 'POST'])
+@is_logged_in
+def category():
+    email = session['email']
+    form = CategoryForm(request.form)
+    if request.method == 'POST' and form.validate_on_submit():
+        category_name = form.category_name.data
+        Categories(email, category_name)
+        flash('Category created', 'green')
+        return redirect(url_for('dashboard'))
+    return render_template('categories.html', form=form)
+
+
 @app.route('/dashboard', methods=['GET', 'POST'])
 @is_logged_in
 def dashboard():
-    return render_template('dashboard.html')
+    if category_data:
+        email = session['email']
+        try:
+            return render_template('dashboard.html', category_list=category_data[email], email=email)
+        except KeyError:
+            flash('Create a Recipe Category', 'red')
+            return render_template('dashboard.html')
+
+    else:
+        flash('Create a Recipe Category', 'red')
+        return render_template('dashboard.html')
+
+
+
+
+
+
+
+
 
 
 

@@ -1,4 +1,6 @@
+import random
 user_data = {}
+category_data = {}
 
 
 class User:
@@ -14,4 +16,26 @@ class User:
                               'Last Name': self.last_name,
                               'Email': self.email,
                               'Password': self.password}
+
+
+class Categories:
+    def __init__(self, email, category_name):
+        global category_data
+        self.user_id = hash(email)
+        self.category_name = category_name
+
+        try:
+            category_data[self.user_id]
+        except KeyError:
+            category_data[self.user_id] = []
+            category_data[self.user_id].append(self.category_name)
+        else:
+            category_data[self.user_id].append(self.category_name)
+
+
+
+
+
+
+
 
