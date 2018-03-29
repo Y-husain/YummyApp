@@ -1,0 +1,33 @@
+.typed-cursor {
+    opacity: 1;
+    animation: blink .7s infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+.text{
+    top:15%;
+    width:100%;
+    text-align:center;
+    color:#fff;
+    font-weight:27px;
+    text-transform:uppercase;
+    letter-spacing:8px;
+    font-size:40px;
+     color:#ffa500;
+
+    }
+
+
+
