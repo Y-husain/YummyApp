@@ -2,7 +2,7 @@ from flask import Flask, render_template, flash, url_for, session, logging, requ
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, PasswordField, validators
 from werkzeug.security import check_password_hash, generate_password_hash
-from data import user_data, User, category_data, Categories
+from data import user_data, User, category_data, Categories, recipe_data, Recipes
 from functools import wraps
 app = Flask(__name__)
 app.secret_key = 'its-secret'
@@ -124,6 +124,57 @@ def dashboard():
     else:
         flash('Create a Recipe Category', 'red')
         return render_template('dashboard.html')
+
+
+@app.route('/dashboard/<string:category_name>/dashboard_recipe')
+@is_logged_in
+def dashboard_recipe(category_name):
+    """Routes the dashboard recipe along with the category name and  users list of recipes
+    if exist or else redirect the user to dashboard to create a category"""
+    email = session['email']
+    index = category_data[email].index(category_name)
+    try:
+        category_data[email][index]
+    except KeyError:
+        flash('Category does not exist, Please create a category', 'red')
+        return redirect(url_for('dashboard'))
+    if recipe_data:
+        email = session['email']
+        try:
+            return render_template('DashboardRecipes.html', recipe_list=recipe_data[email][index], email=email,
+                                   category_name=category_data[email][index])
+        except KeyError:
+            flash('Create a  recipe for the category', 'green')
+            return render_template('DashboardRecipes.html', category_name=category_name)
+    else:
+        flash('Please create a category', 'green')
+        return render_template('DashboardRecipes.html', category_name=category_name)
+
+
+class RecipeForm(FlaskForm):
+    recipe_name = StringField('Recipe Name', [validators.Length(min=1, max=50)])
+    recipe = TextAreaField('Recipe', [validators.Length(min=2, max=200)])
+
+
+@app.route('/my_recipe', methods=['GET', 'POST'])
+@is_logged_in
+def my_recipe():
+    """routes my-recipes that let the user post request that is added to added to my my_recipes dict
+    as a data and is redirected to dashboard_recipe to viewed by user """
+    email = session['email']
+    category_name = request.args.get('val', '')
+    form = RecipeForm(request.form)
+
+    if request.method == 'POST' and form.validate_on_submit():
+        recipe_name = form.recipe_name.data
+        recipe = form.recipe.data
+        Recipes(recipe, recipe_name, category_name, email)
+        flash('Recipe created', 'green')
+        return redirect(url_for('dashboard_recipe', category_name=category_name))
+    return render_template('Recipes.html', form=form)
+
+
+
 
 
 
