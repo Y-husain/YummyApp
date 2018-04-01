@@ -21,6 +21,7 @@ class User:
 class Categories:
     def __init__(self, email, category_name):
         global category_data
+        global recipe_data
         self.user_id = hash(email)
         self.category_name = category_name
 
@@ -29,6 +30,7 @@ class Categories:
         except KeyError:
             category_data[self.user_id] = []
             category_data[self.user_id].append(self.category_name)
+
         else:
             category_data[self.user_id].append(self.category_name)
 
@@ -39,21 +41,29 @@ class Recipes:
     def __init__(self, recipe_name, recipe, category_name, email):
         global category_data
         global recipe_data
+        self.user_id = hash(email)
         self.recipe_name = recipe_name
         self.recipe = recipe
-        self.user_id = email
         self.category_name = category_name
 
         try:
             recipe_data[self.user_id][self.category_name]
         except KeyError:
-            recipe_data[self.user_id] = {}
-            recipe_data[self.user_id].update({self.category_name: []})
-            recipe_data[self.user_id][self.category_name].append({'Recipe Name': self.recipe_name,
-                                                                  'My Recipe': self.recipe})
+            try:
+                recipe_data[self.user_id]
+            except KeyError:
+                recipe_data[self.user_id] = {}
+            else:
+                recipe_data[self.user_id][self.category_name] = []
+                recipe_data[self.user_id][self.category_name].append({'Recipe': self.recipe,
+                                                                      'Recipe Name': self.recipe_name})
         else:
-            recipe_data[self.user_id][self.category_name].append({'Recipe Name': self.recipe_name,
-                                                                  'My Recipe': self.recipe})
+            recipe_data[self.user_id][self.category_name].append({'Recipe': self.recipe, 'Recipe Name': self.recipe_name})
+
+
+
+
+
 
 
 

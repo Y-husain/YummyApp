@@ -140,8 +140,9 @@ def dashboard_recipe(category_name):
         return redirect(url_for('dashboard'))
     if recipe_data:
         email = session['email']
+
         try:
-            return render_template('DashboardRecipes.html', recipe_list=recipe_data[email][index], email=email,
+            return render_template('DashboardRecipes.html', recipe_list=recipe_data[email][category_name], email=email,
                                    category_name=category_data[email][index])
         except KeyError:
             flash('Create a  recipe for the category', 'green')
