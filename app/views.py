@@ -190,11 +190,18 @@ def edit_recipe(id_recipe):
         edited_recipe = form.recipe.data
         del recipe_data[email][category_name][id_recipe]
         Recipes(edited_recipe_name, edited_recipe, category_name, email)
-        print('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr', recipe_data)
         flash('Recipe successfully updated', 'green')
         return redirect(url_for('dashboard_recipe', category_name=category_name))
 
 
+@app.route('/delete_recipe/<int:id_recipe>', methods=['GET', 'POST'])
+@is_logged_in
+def delete_recipe(id_recipe):
+    email = session['email']
+    category_name = request.args.get('val', '')
+    del recipe_data[email][category_name][id_recipe]
+    flash('deleted successfully', 'green')
+    return redirect(url_for('dashboard_recipe', category_name=category_name))
 
 
 
