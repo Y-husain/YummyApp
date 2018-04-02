@@ -23,11 +23,16 @@
     <body>
     <div class="container">
         <div class="center-align orange-text">
-            <h2>{{category_name}}</h2>
-            <!--<ul>-->
-                <!--<li><a class="btn-floating orange"><i class="material-icons">mode_edit</i></a></li>-->
-                <!--<li><a class="btn-floating red"><i class="material-icons">delete</i></a></li>-->
-            <!--</ul>-->
+            <h2><a class="modal-trigger orange-text" href="#category">{{category_name}}</a></h2>
+            <div id="category" class="modal">
+                <div class="modal-content"><h5>Are You sure you want to delete category or update?</h5><p><i class="material-icons">delete
+                </i>Everything along with the recipe will be deleted</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Disagree</a>
+                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+                </div>
+            </div>
         </div>
     <div class="section">
    <div class="row">
@@ -39,7 +44,7 @@
           <p>{{recipe['Recipe'] | safe}}</p>
         </div>
         <div class="card-action">
-          <a href="#" class="btn btn-floating waves-effect waves-light orange"><i class="large material-icons">mode_edit</i></a>
+          <a onclick="location.href='/edit_recipe/{{recipe_list.index(recipe)}}?val={{category_name}}'"  class="btn btn-floating waves-effect waves-light orange"><i class="large material-icons">mode_edit</i></a>
           <a href="#" class="btn btn-floating waves-effect waves-light red"><i class="large material-icons">delete</i></a>
         </div>
       </div>
@@ -60,11 +65,16 @@
       <!--JavaScript at end of body for optimized loading-->
       <script type="text/javascript" src="{{url_for('static', filename = 'js/materialize.min.js')}}"></script>
     <script>
-  var elem = document.querySelector('.center-align');
-  var instance = M.FloatingActionButton.init(elem, {
-    direction: 'right',
-    hoverEnabled: false
-  })
+  var elem = document.querySelector('.modal');
+  var instance = M.Modal.init(elem, options);
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.modal').modal();
+  });
+
+
     </script>
     </body>
 </html>

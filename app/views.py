@@ -148,7 +148,7 @@ def dashboard_recipe(category_name):
             flash('Create a  recipe for the category', 'green')
             return render_template('DashboardRecipes.html', category_name=category_name)
     else:
-        flash('Please create a category', 'green')
+        flash('Please create a category Recipe', 'green')
         return render_template('DashboardRecipes.html', category_name=category_name)
 
 
@@ -168,10 +168,41 @@ def my_recipe():
     if request.method == 'POST' and form.validate_on_submit():
         recipe_name = form.recipe_name.data
         recipe = form.recipe.data
-        Recipes(recipe, recipe_name, category_name, email)
+        Recipes(recipe_name, recipe, category_name, email)
         flash('Recipe created', 'green')
         return redirect(url_for('dashboard_recipe', category_name=category_name))
     return render_template('Recipes.html', form=form)
+
+
+@app.route('/edit_recipe/<int:id_recipe>', methods=['GET', 'POST'])
+@is_logged_in
+def edit_recipe(id_recipe):
+    """routes edit_recipes when the user whats to update his/her recipe"""
+    email = session['email']
+    category_name = request.args.get('val', '')
+    form = RecipeForm(request.form)
+    if request.method == 'GET':
+        form.recipe_name.data = recipe_data[email][category_name][id_recipe]['Recipe Name']
+        form.recipe.data = recipe_data[email][category_name][id_recipe]['Recipe']
+        return render_template('edited_recipe.html', form=form)
+    if request.method == 'POST' and form.validate_on_submit():
+        edited_recipe_name = form.recipe_name.data
+        edited_recipe = form.recipe.data
+        del recipe_data[email][category_name][id_recipe]
+        Recipes(edited_recipe_name, edited_recipe, category_name, email)
+        print('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr', recipe_data)
+        flash('Recipe successfully updated', 'green')
+        return redirect(url_for('dashboard_recipe', category_name=category_name))
+
+
+
+
+
+
+
+
+
+
 
 
 
