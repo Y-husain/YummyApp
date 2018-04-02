@@ -47,18 +47,26 @@ class Recipes:
         self.category_name = category_name
 
         try:
-            recipe_data[self.user_id][self.category_name]
+            recipe_data[self.user_id]
+
         except KeyError:
-            try:
-                recipe_data[self.user_id]
-            except KeyError:
-                recipe_data[self.user_id] = {}
-            else:
-                recipe_data[self.user_id][self.category_name] = []
-                recipe_data[self.user_id][self.category_name].append({'Recipe': self.recipe,
-                                                                      'Recipe Name': self.recipe_name})
+            recipe_data[self.user_id] = {}
+            recipe_data[self.user_id][self.category_name] = []
+            recipe_data[self.user_id][self.category_name].append({'Recipe Name': self.recipe_name,
+                                                                  'Recipe': self.recipe_name})
         else:
-            recipe_data[self.user_id][self.category_name].append({'Recipe': self.recipe, 'Recipe Name': self.recipe_name})
+            try:
+                recipe_data[self.user_id][self.category_name]
+            except KeyError:
+                recipe_data[self.user_id][self.category_name] = []
+                recipe_data[self.user_id][self.category_name].append({'Recipe Name': self.recipe_name,
+                                                                      'Recipe': self.recipe_name})
+            else:
+                recipe_data[self.user_id][self.category_name].append({'Recipe Name': self.recipe_name,
+                                                                      'Recipe': self.recipe_name})
+
+
+
 
 
 

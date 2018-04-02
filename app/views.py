@@ -165,7 +165,6 @@ def my_recipe():
     email = session['email']
     category_name = request.args.get('val', '')
     form = RecipeForm(request.form)
-
     if request.method == 'POST' and form.validate_on_submit():
         recipe_name = form.recipe_name.data
         recipe = form.recipe.data
@@ -173,7 +172,6 @@ def my_recipe():
         flash('Recipe created', 'green')
         return redirect(url_for('dashboard_recipe', category_name=category_name))
     return render_template('Recipes.html', form=form)
-
 
 
 
