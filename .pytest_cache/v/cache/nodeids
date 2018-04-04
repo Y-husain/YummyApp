@@ -1,1 +1,4 @@
-[]
+[
+  "test/test_app.py::TestUser::test_application_running", 
+  "test/test_app.py::TestUser::test_logging_running"
+]
