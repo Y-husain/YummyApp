@@ -204,6 +204,33 @@ def delete_recipe(id_recipe):
     return redirect(url_for('dashboard_recipe', category_name=category_name))
 
 
+@app.route('/edit_category/<string:category_name>', methods=['GET', 'POST'])
+@is_logged_in
+def edit_category(category_name):
+    email = session['email']
+    form = CategoryForm(request.form)
+    if request.method == 'GET':
+        form.category_name.data = category_name
+
+    if request.method == 'POST' and form.validate_on_submit():
+        edited_category_name = form.category_name.data
+        del_id = category_data[email].index(category_name)
+        del category_data[email][del_id]
+        Categories(email, edited_category_name)
+        flash('Category successfully updated', 'green')
+        return redirect(url_for('dashboard'))
+    return render_template('edit_category.html', form=form)
+
+
+@app.route('/delete_category/<category_name>', methods=['POST'])
+@is_logged_in
+def delete_category(category_name):
+    email = session['email']
+    index = category_data[email].index(category_name)
+    del category_data[email][index]
+    flash('successfully deleted category', 'green')
+    return redirect(url_for('dashboard'))
+
 
 
 

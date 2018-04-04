@@ -14,9 +14,9 @@
           <a href="#" class="brand-logo">Yummy Recipe</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
-              <li><i class="material-icons left">account_circle</i>{{session.FirstName}}</li>
-            <li><a href="#">Categories</a></li>
-            <li><a href="#">Logout</a></li>
+              <li><i class="material-icons left">account_circle</i></li>
+            <li><a href="/category">Categories</a></li>
+            <li><a href="/logout">Logout</a></li>
           </ul>
         </div>
     </nav>
@@ -26,11 +26,24 @@
     <body>
     <div class="container">
         <div class="section">
-    <div class="collection">
+    <ul class="collection">
         {% for category in category_list%}
-    <a href="/dashboard/{{category}}/dashboard_recipe" class="collection-item"><span class="new badge">4</span>{{category}}</a>
-         {% endfor %}
+        <li class="collection-item">
+            <div><span class="left-align teal-text">{{category}}</span>
+
+            <form method="post" class="secondary-content"   action="{{url_for('delete_category', category_name=category)}}">
+        <input type="hidden" name="_method" value="DELETE">
+        <button type="submit" class="secondary-content"><i class="material-icons">delete</i></button>
+            </form>
+        <a href="/edit_category/{{category}}" class="secondary-content"><i class="material-icons">mode_edit</i></a>
+        <a href="/dashboard/{{category}}/dashboard_recipe" class="secondary-content"><i class="material-icons">add</i></a>
+
+
+
     </div>
+        </li>
+         {% endfor %}
+    </ul>
         </div>
     </div>
 
