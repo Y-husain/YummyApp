@@ -1,0 +1,65 @@
+[33mcommit 9caf743fe51aad47da1692b5672187e8fe856620[m[33m ([m[1;36mHEAD -> [m[1;32mdevelop[m[33m, [m[1;31morigin/develop[m[33m)[m
+Author: Yahya <husain.host@gmail.com>
+Date:   Wed Apr 4 21:51:50 2018 +0300
+
+    updated travis yml  with script
+
+[33mcommit 921fc2bb2e0561d66ad4d09088c21ca6205a95cd[m
+Author: Yahya <husain.host@gmail.com>
+Date:   Wed Apr 4 18:39:34 2018 +0300
+
+    Added travis yml
+
+[33mcommit 35f2710cdd6c0fbce21579836f841bf7ced91804[m
+Author: Yahya <husain.host@gmail.com>
+Date:   Wed Apr 4 15:16:21 2018 +0300
+
+    Added edit-category and delete for categories in dashboard
+
+[33mcommit 250db4fc3873271ba8d94ddacf968fa456721cfb[m
+Author: Yahya <husain.host@gmail.com>
+Date:   Mon Apr 2 22:48:38 2018 +0300
+
+    Added delete for recipe category
+
+[33mcommit f110ee09b86a9891e168d6aedbfa1f53478a441e[m
+Author: Yahya <husain.host@gmail.com>
+Date:   Mon Apr 2 19:25:46 2018 +0300
+
+    Added edit for recipe category ie update
+
+[33mcommit b4b8907ab61ac4adbf421206c8ca0bc58af47421[m
+Author: Yahya <husain.host@gmail.com>
+Date:   Mon Apr 2 08:31:32 2018 +0300
+
+    Rearrange and fixed recipe categories
+
+[33mcommit a07a3775e5473c9cb794d8b616d1d4e1d5e28a19[m
+Author: Yahya <husain.host@gmail.com>
+Date:   Sun Apr 1 23:32:41 2018 +0300
+
+    Fixed dashboard for categories  that overide categories-recipe that  user adds
+
+[33mcommit 6992e1b17f913e29d1c09d0e4e16136f5777320c[m
+Author: Yahya <husain.host@gmail.com>
+Date:   Sat Mar 31 00:05:44 2018 +0300
+
+    Added recipe-categories  and dashboard_recipe categories
+
+[33mcommit 7bd7afd7b835b2d2ac03f0bf2712f1996319f224[m
+Author: Yahya <husain.host@gmail.com>
+Date:   Thu Mar 29 23:41:18 2018 +0300
+
+    Added category and dashboard category
+
+[33mcommit bf12268be6061a569e979b8215c5761c56c05de7[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Yahya <husain.host@gmail.com>
+Date:   Thu Mar 29 19:51:00 2018 +0300
+
+    Added login page and registration page
+
+[33mcommit a1db6a189f521daf722f23fb1e539f6d01fcf81d[m
+Author: Yahya <husain.host@gmail.com>
+Date:   Tue Mar 27 20:11:07 2018 +0300
+
+    Initial commit flask-structure
