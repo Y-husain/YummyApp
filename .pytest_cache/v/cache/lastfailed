@@ -1,1 +1,3 @@
-{}
+{
+  "test/test_app.py::TestUser::test_user_password_salt_random": true
+}
