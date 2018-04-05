@@ -1,5 +1,5 @@
 import unittest
-from data import User, user_data
+from data import User, user_data, Categories, category_data, Recipes, recipe_data
 from app.views import app
 
 
@@ -11,7 +11,6 @@ class TestUser(unittest.TestCase):
         self.app = app
         self.client = app.test_client()
         self.michael = User('Michael', 'Johnson', 'user_1@example.com', 'password2018')
-        self.johndoe = User('john', 'Doe', 'user_2@example.com', 'password2018')
 
     def test_application_running(self):
         """ensures that flask was setup correctly"""
@@ -36,6 +35,22 @@ class TestUser(unittest.TestCase):
     def test_user_added(self):
         """test if user is added"""
         self.assertIsInstance(self.michael, User, False)
+
+    def test_category_created(self):
+        """test if category is created"""
+        Categories('user_email', 'HealthyFood')
+        self.assertIn(hash('user_email'), category_data)
+        self.assertIn('HealthyFood', category_data[hash('user_email')][0])
+
+    def test_recipe_category_created(self):
+        """test if recipe created in category"""
+        Categories('user_email', 'HealthyFood')
+        category_name = category_data[hash('user_email')].index('HealthyFood')
+        Recipes('Fruits', 'blah blah blah heat...Eat fruit every morning', category_name, 'user_email')
+        self.assertIn('Fruits', recipe_data[hash('user_email')][category_name][0]['Recipe Name'])
+
+
+
 
 
 
