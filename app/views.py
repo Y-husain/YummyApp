@@ -62,13 +62,17 @@ def login():
         email = request.form['email']
         user_password = request.form['password']
         email = hash(email)
-        if (email in user_data) and check_password_hash(user_data[email]['Password'], user_password):
-            session['logged_in'] = True
-            session['email'] = email
-            flash('You are now logged in', 'green')
-            return redirect(url_for('dashboard'))
+        if email in user_data:
+            if check_password_hash(user_data[email]['Password'], user_password):
+                session['logged_in'] = True
+                session['email'] = email
+                flash('You are now logged in', 'green')
+                return redirect(url_for('dashboard'))
+            else:
+                flash('Invalid password! Please try again', 'red')
+                return redirect(url_for('login'))
         else:
-            flash('Invalid email or password ! Please try again', 'red')
+            flash('Invalid email! Please try again', 'red')
             return redirect(url_for('login'))
     return render_template('index.html', form=form)
 

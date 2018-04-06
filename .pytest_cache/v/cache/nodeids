@@ -7,6 +7,9 @@
   "test/test_app.py::TestUser::test_user_password_hash", 
   "test/test_app.py::TestUser::test_user_registration_successful", 
   "test/test_app.py::AppViewTestCase::test_app_running", 
+  "test/test_app.py::AppViewTestCase::test_login_invalid_email", 
+  "test/test_app.py::AppViewTestCase::test_login_invalid_password", 
+  "test/test_app.py::AppViewTestCase::test_logout_user", 
   "test/test_app.py::AppViewTestCase::test_sign_up_data", 
   "test/test_app.py::AppViewTestCase::test_sign_up_page"
 ]

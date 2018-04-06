@@ -90,6 +90,21 @@ class AppViewTestCase(TestCase):
         }, follow_redirects=True)
         self.assertIn(b'You have successfully registered', rv.data)
 
+    def test_login_invalid_email(self):
+        login = self.app.test_client().post('/login', data={
+            "email": 'bo_theo@gmail.com',
+            "password": 'Bo1995'}, follow_redirects=True)
+        self.assertIn('Invalid email! Please try again', login.data)
+
+    def test_login_invalid_password(self):
+        login = self.app.test_client().post('/login', data={
+            "email": "Bo_theo@email.com",
+            "password": "bo1995"
+        }, follow_redirects=True)
+        self.assertIn('Invalid password! Please try again', login.data)
+
+
+
 
 
 

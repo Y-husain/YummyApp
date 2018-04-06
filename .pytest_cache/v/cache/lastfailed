@@ -1,4 +1,5 @@
 {
+  "test/test_app.py::AppViewTestCase::test_logout_user": true, 
   "test/test_app.py::AppViewTestCase::test_validate_success_Signup_form": true, 
   "test/test_app.py::TestUser::test_user_password_salt_random": true
 }
