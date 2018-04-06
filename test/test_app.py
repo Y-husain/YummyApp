@@ -1,5 +1,6 @@
 import unittest
 from data import User, user_data, Categories, category_data, Recipes, recipe_data
+from flask_testing import TestCase
 from app.views import app
 
 
@@ -11,6 +12,9 @@ class TestUser(unittest.TestCase):
         self.app = app
         self.client = app.test_client()
         self.michael = User('Michael', 'Johnson', 'user_1@example.com', 'password2018')
+
+    def tearDown(self):
+        user_data.clear()
 
     def test_application_running(self):
         """ensures that flask was setup correctly"""
@@ -48,6 +52,60 @@ class TestUser(unittest.TestCase):
         category_name = category_data[hash('user_email')].index('HealthyFood')
         Recipes('Fruits', 'blah blah blah heat...Eat fruit every morning', category_name, 'user_email')
         self.assertIn('Fruits', recipe_data[hash('user_email')][category_name][0]['Recipe Name'])
+
+
+class AppViewTestCase(TestCase):
+    """test for views"""
+
+    def create_app(self):
+        """creates app instance"""
+        test_app = app
+        test_app.config['TESTING'] = True
+        app.config['WTF_CSRF_ENABLED'] = False
+        return test_app
+
+    def setUp(self):
+        self.user = User('Bo', 'Theo', 'Bo_theo@email.com', 'Bo1995')
+
+    def tearDown(self):
+        user_data.clear()
+
+    def test_app_running(self):
+        self.app.test_client().get('/login')
+        self.assert_template_used('index.html')
+
+    def test_sign_up_page(self):
+        rv = self.app.test_client().get('/signup')
+        assert b"PLEASE SIGNUP" in rv.data
+        self.assert_template_used('signup.html')
+
+    def test_sign_up_data(self):
+        user_data.clear()
+        rv = self.app.test_client().post('/signup', data={
+            "first_name": "Bo",
+            "last_name": "Theo",
+            "email": "Bo_theo@email.com",
+            "password": "Bo1995",
+            "confirm": "Bo1995"
+        }, follow_redirects=True)
+        self.assertIn(b'You have successfully registered', rv.data)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

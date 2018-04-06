@@ -1,7 +1,7 @@
 from flask import Flask, render_template, flash, url_for, session, logging, request, redirect
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, PasswordField, validators
-from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.security import check_password_hash
 from data import user_data, User, category_data, Categories, recipe_data, Recipes
 from functools import wraps
 app = Flask(__name__)
@@ -40,11 +40,14 @@ def signup():
         first_name = form.first_name.data
         last_name = form.last_name.data
         email = form.email.data
-        password = generate_password_hash(str(form.password.data))
-        User(first_name, last_name, email, password)
-        flash('You have successfully registered', 'green')
-
-        return redirect(url_for('index'))
+        password = form.password.data
+        if hash(form.email.data) not in user_data:
+            User(first_name, last_name, email, password)
+            flash('You have successfully registered', 'green')
+            return redirect(url_for('index'))
+        else:
+            flash('Sorry email already exist', 'red')
+            return render_template('signup.html', form=form)
     return render_template('signup.html', form=form)
 
 

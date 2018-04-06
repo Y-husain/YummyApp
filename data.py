@@ -1,3 +1,4 @@
+from werkzeug.security import generate_password_hash
 user_data = {}
 category_data = {}
 recipe_data = {}
@@ -11,7 +12,7 @@ class User:
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
-        self.password = password
+        self.password = generate_password_hash(str(password))
         user_data[user_id] = {'First Name': self.first_name,
                               'Last Name': self.last_name,
                               'Email': self.email,
