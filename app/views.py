@@ -85,13 +85,12 @@ def is_logged_in(f):
         if 'logged_in' in session:
             return f(*args, **kwargs)
         else:
-            flash('Unathorized, Please login', 'red')
+            flash('Unauthorized to view this view, Please login', 'red')
             return redirect(url_for('login'))
     return wrap
 
 
 @app.route('/logout')
-@is_logged_in
 def logout():
     """clears the session and redirect the user login page"""
     session.clear()
