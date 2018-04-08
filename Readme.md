@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/Y-husain/YummyApp.svg?branch=master)](https://travis-ci.org/Y-husain/YummyApp)
 [![Build Status](https://travis-ci.org/Y-husain/YummyApp.svg?branch=develop)](https://travis-ci.org/Y-husain/YummyApp)
 
-###YUMMY RECIPES
+<h3>YUMMY RECIPES</h3>
 
 A simple app that uses flask
 The Yummy Recipes app has been beautifully designed with a number of functionalities that include: 
