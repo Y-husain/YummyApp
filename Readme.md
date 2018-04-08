@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/Y-husain/YummyApp.svg?branch=master)](https://travis-ci.org/Y-husain/YummyApp)
-
+[![Coverage Status](https://coveralls.io/repos/github/Y-husain/YummyApp/badge.svg?branch=master)](https://coveralls.io/github/Y-husain/YummyApp?branch=master)
 <h2>YUMMY RECIPES</h2>
 
 A simple app that uses flask
