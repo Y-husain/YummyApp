@@ -1,7 +1,8 @@
 [![Build Status](https://travis-ci.org/Y-husain/YummyApp.svg?branch=master)](https://travis-ci.org/Y-husain/YummyApp)
 [![Build Status](https://travis-ci.org/Y-husain/YummyApp.svg?branch=develop)](https://travis-ci.org/Y-husain/YummyApp)
 
-##YUMMY RECIPES
+###YUMMY RECIPES
+
 A simple app that uses flask
 The Yummy Recipes app has been beautifully designed with a number of functionalities that include: 
 creation of new user account, creation of new recipe categories, viewing of recipe categories, updating of recipe categories, deletion of recipe categories, creation of new recipes, viewing of recipes, updating of recipes and deletion of recipes.
@@ -47,7 +48,7 @@ enjoy
 . Navigate to the local host with your favorite browser 
 enjoy</span>
 
-##Running  the test
+###Running  the test
 
 <p>Testing has been implemented using the unit testing framework of the Python language. To run tests, use the following command:</p>
 <p><code>$ pytest</code></p>
@@ -65,7 +66,7 @@ example below
 
 ```
 
-##Test Example
+###Test Example
 
 
 ```
