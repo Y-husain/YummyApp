@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.org/Y-husain/YummyApp.svg?branch=master)](https://travis-ci.org/Y-husain/YummyApp)
-[![Build Status](https://travis-ci.org/Y-husain/YummyApp.svg?branch=develop)](https://travis-ci.org/Y-husain/YummyApp)
 
 <h2>YUMMY RECIPES</h2>
 
