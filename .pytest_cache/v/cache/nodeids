@@ -1,11 +1,4 @@
 [
-  "test/test_app.py::TestUser::test_application_running", 
-  "test/test_app.py::TestUser::test_category_created", 
-  "test/test_app.py::TestUser::test_logging_running", 
-  "test/test_app.py::TestUser::test_recipe_category_created", 
-  "test/test_app.py::TestUser::test_user_added", 
-  "test/test_app.py::TestUser::test_user_password_hash", 
-  "test/test_app.py::TestUser::test_user_registration_successful", 
   "test/test_app.py::AppViewTestCase::test_app_running", 
   "test/test_app.py::AppViewTestCase::test_authorized_access_after_login", 
   "test/test_app.py::AppViewTestCase::test_login_invalid_email", 
@@ -16,5 +9,14 @@
   "test/test_app.py::AppViewTestCase::test_unauthorized_access_to_category", 
   "test/test_app.py::AppViewTestCase::test_unauthorized_access_to_dashboard", 
   "test/test_app.py::AppViewTestCase::test_unauthorized_user_access_recipe", 
-  "test/test_app.py::AppViewTestCase::test_unauthorized_user_edit_recipe"
+  "test/test_app.py::AppViewTestCase::test_unauthorized_user_edit_recipe", 
+  "test/test_user.py::TestUser::test_application_running", 
+  "test/test_user.py::TestUser::test_category_add", 
+  "test/test_user.py::TestUser::test_category_created", 
+  "test/test_user.py::TestUser::test_logging_running", 
+  "test/test_user.py::TestUser::test_login", 
+  "test/test_user.py::TestUser::test_recipe_category_created", 
+  "test/test_user.py::TestUser::test_user_added", 
+  "test/test_user.py::TestUser::test_user_password_hash", 
+  "test/test_user.py::TestUser::test_user_registration_successful"
 ]
