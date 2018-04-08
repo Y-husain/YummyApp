@@ -11,12 +11,12 @@ Yummy recipes provides a platform for users to keep track of their awesome recip
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### Prerequisites
+Prerequisites
 
 A working web browser and or a pc.
 If you wish to clone the repo please satisfy the requirements in the requirements.txt
 
-### Installing
+## Installing
 
 ```
 install python language (preferably version 3.6)
@@ -33,7 +33,7 @@ apt-get install -f
 ```
 
 
-< ol>
+<ol>
 <h5> Navigate to the cloned repo </h5>you should now see a local host 127.0.0.1:5000
 Navigate to the local host with your favorite browser 
 enjoy
@@ -47,7 +47,7 @@ enjoy
 . Navigate to the local host with your favorite browser 
 enjoy</span>
 
-###Running  the test
+##Running  the test
 
 <p>Testing has been implemented using the unit testing framework of the Python language. To run tests, use the following command:</p>
 <p><code>$ pytest</code></p>
@@ -65,7 +65,7 @@ example below
 
 ```
 
-###Test Example
+##Test Example
 
 
 ```
@@ -77,7 +77,7 @@ example below
         self.assertIn('Fruits', recipe_data[hash('user_email')][category_name][0]['Recipe Name'])
 
 ```
-### Need for test
+## Need for test
 
 To ensure maintainability of code in future developments
 This ensures no new code breaks our already existing code
@@ -99,7 +99,7 @@ Contributions would be highly appreciated, Help out and make a pull request, and
 
 ## Authors
 
-* **Dhulkifli Husseiin** - *Initial work* - [Recipe-challenge](https://github.com/YummyApp)
+* **YAHYA HUSSEIN** - *Initial work* - [Recipe-challenge](https://github.com/YummyApp)
 
 
 ## License
