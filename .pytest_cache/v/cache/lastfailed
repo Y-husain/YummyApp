@@ -1,0 +1,11 @@
+{
+  "test/category_test.py::CategoryTest::test_create_success": true, 
+  "test/test_app.py::AppViewTestCase::test_add_category": true, 
+  "test/test_app.py::AppViewTestCase::test_category_add": true, 
+  "test/test_app.py::AppViewTestCase::test_category_update": true, 
+  "test/test_app.py::AppViewTestCase::test_categoyr_add": true, 
+  "test/test_app.py::AppViewTestCase::test_unauthorized_user_access_to_dashboardRecipe": true, 
+  "test/test_app.py::AppViewTestCase::test_validate_success_Signup_form": true, 
+  "test/test_app.py::TestUser::test_user_password_salt_random": true, 
+  "test/test_user.py::TestUser::test_category_add": true
+}

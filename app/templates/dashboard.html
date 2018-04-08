@@ -4,7 +4,7 @@
       <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="{{url_for('static', filename = 'css/materialize.min.css')}}"  media="screen,projection"/>
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -14,33 +14,48 @@
           <a href="#" class="brand-logo">Yummy Recipe</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
-            <li><a href="#">Categories</a></li>
-            <li><a href="#">Logout</a></li>
+              <li><i class="material-icons left">account_circle</i></li>
+            <li><a href="/category">Categories</a></li>
+            <li><a href="/logout">Logout</a></li>
           </ul>
         </div>
     </nav>
 
+    {% include "_messages.html" %}
+
     <body>
     <div class="container">
         <div class="section">
-    <div class="collection">
-    <a href="#!" class="collection-item"><span class="badge">1</span>Healthy Food</a>
-    <a href="#!" class="collection-item"><span class="new badge">4</span>Cakes</a>
-    <a href="#!" class="collection-item">Pastries</a>
-    <a href="#!" class="collection-item"><span class="badge">14</span> salads</a>
-  </div>
+    <ul class="collection">
+        {% for category in category_list%}
+        <li class="collection-item">
+            <div><span class="left-align teal-text">{{category}}</span>
+
+            <form method="post" class="secondary-content"   action="{{url_for('delete_category', category_name=category)}}">
+        <input type="hidden" name="_method" value="DELETE">
+        <button type="submit" class="secondary-content"><i class="material-icons">delete</i></button>
+            </form>
+        <a href="/edit_category/{{category}}" class="secondary-content"><i class="material-icons">mode_edit</i></a>
+        <a href="/dashboard/{{category}}/dashboard_recipe" class="secondary-content"><i class="material-icons">add</i></a>
+
+
+
+    </div>
+        </li>
+         {% endfor %}
+    </ul>
         </div>
     </div>
 
 
     <div class="fixed-action-btn">
-      <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+      <a  href="/category"   class="btn-floating btn-large pulse waves-effect waves-light red"><i class="material-icons">add</i></a>
     </div>
 
 
 
       <!--JavaScript at end of body for optimized loading-->
-      <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script type="text/javascript" src="{{url_for('static', filename = 'js/materialize.min.js')}}"></script>
     <script>
     </script>
     </body>
