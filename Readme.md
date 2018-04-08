@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/Y-husain/YummyApp.svg?branch=master)](https://travis-ci.org/Y-husain/YummyApp)
 [![Build Status](https://travis-ci.org/Y-husain/YummyApp.svg?branch=develop)](https://travis-ci.org/Y-husain/YummyApp)
 
-<h3>YUMMY RECIPES</h3>
+<h2>YUMMY RECIPES</h2>
 
 A simple app that uses flask
 The Yummy Recipes app has been beautifully designed with a number of functionalities that include: 
@@ -48,7 +48,7 @@ enjoy
 . Navigate to the local host with your favorite browser 
 enjoy</span>
 
-###Running  the test
+<h3>Running  the test</h3>
 
 <p>Testing has been implemented using the unit testing framework of the Python language. To run tests, use the following command:</p>
 <p><code>$ pytest</code></p>
@@ -66,7 +66,7 @@ example below
 
 ```
 
-###Test Example
+<h3>Test Example</h3>
 
 
 ```
