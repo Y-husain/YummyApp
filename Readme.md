@@ -100,7 +100,7 @@ Contributions would be highly appreciated, Help out and make a pull request, and
 
 ## Authors
 
-* **YAHYA HUSSEIN** - *Initial work* - [Recipe-challenge](https://github.com/YummyApp)
+* **YAHYA HUSSEIN** - *Initial work* - [Recipe-challenge](https://github.com/Y-husain/YummyRecipe-Template.git)
 
 
 ## License
