@@ -1,25 +1,20 @@
-env:
-  global:
-    - CC_TEST_REPORTER_ID=36796e056ce3f25a09971c63a0f11a265b278e361b4525e6fb2395e87a0ff4d1
 language: python
-python:
-  -2.7
-  -3.6
-install:
-  -pip install -r requirements.txt
-  -pip install coveralls
-cache: pip
-before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
-script:
- - source .env
-  - pytest --with-coverage --cover-package=test/ --cover-package=app/views
-    && coverage report
+ - "python"
 
-after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+python:
+  - "3.6"
+
+install:
+  - "pip install -r requirements.txt"
+  - "pip install coveralls"
+
+script:
+  - "source .env"
+  - "nosetests --with-coverage --cover-package=tests --cover-package=app/models
+ && coverage report"
+
+after_success:
+  - "coveralls"```
 
 after_success:
   "coveralls"
