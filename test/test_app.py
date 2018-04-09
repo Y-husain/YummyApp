@@ -1,4 +1,4 @@
-from data import User, user_data, category_data, Categories
+from data import User, user_data
 from flask_testing import TestCase
 from app.views import app
 
