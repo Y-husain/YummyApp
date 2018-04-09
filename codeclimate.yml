@@ -1,0 +1,14 @@
+engines:
+  pep8:
+    enabled: true
+    config:
+      extensions:
+      - .py
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - python: true
+exclude_paths:
+- "venv/**"
+- "templates/**"
