@@ -85,6 +85,25 @@ class TestUser(unittest.TestCase):
         rv = self.signup('Bo', 'Theo', 'Bo_theo5@example.com', 'Bo1995', 'Bo195')
         self.assertIn(b'Password do not match', rv.data)
 
+    def test_successful_login(self):
+        """test for successful sign in"""
+        self.signup('Bo', 'Theo', 'Bo_theo5@example.com', 'Bo1995', 'Bo1995')
+        rv = self.login('Bo_theo5@example.com', 'Bo1995')
+        self.assertIn(b'You are now logged in', rv.data)
+
+    def test_invalid_email(self):
+        rv = self.login('Bo_wrong@example.com', 'Bo1995')
+        self.assertIn(b'Invalid email! Please try again', rv.data)
+
+    def test_invalid_password(self):
+        self.signup('Bo', 'Theo', 'Bo_theo5@example.com', 'Bo1995', 'Bo1995')
+        rv = self.login('Bo_theo5@example.com', 'Bo1905')
+        self.assertIn(b'Invalid password! Please try again', rv.data)
+
+    def test_logout(self):
+        self.signup('Bo', 'Theo', 'Bo_theo5@example.com', 'Bo1995', 'Bo1995')
+        rv = self.logout()
+        self.assertIn('You are now logged out', rv.data)
 
     def test_user_password_hash(self):
         """test if user password is encrypt"""
