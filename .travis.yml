@@ -10,7 +10,7 @@ install:
 
 script:
   - "source .env"
-  - "nosetests --with-coverage --cover-package=test --cover-package=app
+  - "pytest --with-coverage --cover-package=test --cover-package=app
  && coverage report"
 
 after_success:
