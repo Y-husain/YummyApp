@@ -17,9 +17,6 @@ script:
   -pytest --with coverage --cover-package=app/views.py
   -pytest --with coverage --cover-package=test/
 
-
-
-
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
