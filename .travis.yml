@@ -15,7 +15,7 @@ before_script:
   - ./cc-test-reporter before-build
 script:
  - source .env
-  - nosetests --with-coverage --cover-package=tests --cover-package=app/views
+  - pytest --with-coverage --cover-package=test/ --cover-package=app/views
     && coverage report
 
 after_script:
