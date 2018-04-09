@@ -76,13 +76,16 @@ example below
 
 
 ```
-       def test_recipe_category_created(self):
-        """test if recipe created in category"""
-        Categories('user_email', 'HealthyFood')
-        category_name = category_data[hash('user_email')].index('HealthyFood')
-        Recipes('Fruits', 'blah blah blah heat...Eat fruit every morning', category_name, 'user_email')
-        self.assertIn('Fruits', recipe_data[hash('user_email')][category_name][0]['Recipe Name'])
-
+           def test_delete_recipe_category(self):
+        """test for deletion of recipe"""
+        self.signup('Bo', 'Theo', 'Bo_theo5@example.com', 'Bo1995', 'Bo1995')
+        self.login('Bo_theo5@example.com', 'Bo1995')
+        self.category('JunkFood')
+        self.recipe_dashboard()
+        self.create_recipe('cakes', 'blah, blah, blah....mix ingredient, heat')
+        self.edit_recipe('edited cakes', 'edited blah blah blah spoon , heat')
+        rv = self.del_recipe()
+        self.assertIn(b'deleted successfully', rv.data)
 ```
 ## Need for test
 
