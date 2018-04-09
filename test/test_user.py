@@ -14,6 +14,7 @@ class TestUser(unittest.TestCase):
 
     def tearDown(self):
         user_data.clear()
+        category_data.clear()
 
     def signup(self, first_name, last_name, email, password, confirm):
         return self.client.post('/signup', data=dict(
@@ -26,18 +27,21 @@ class TestUser(unittest.TestCase):
             password=password
         ), follow_redirects=True)
 
+    def dashboard(self):
+        return self.client.get('/dashboard', follow_redirects=True)
+
     def category(self, category_name):
         return self.client.post('/category', data=dict(
-            category_name= category_name
+            category_name=category_name
         ), follow_redirects=True)
 
     def edit_category(self, edited_category_name):
-        return self.client.post('/edit_category', data=dict(
-            edited_category_name=edited_category_name
+        return self.client.post('/edit_category/Breakfast', data=dict(
+            category_name=edited_category_name
         ), follow_redirects=True)
 
     def del_category(self):
-        self.client.post('/delete_category', follow_redirects=True)
+        return self.client.post('/delete_category/JunkFood', follow_redirects=True)
 
     def logout(self):
         return self.client.get('/logout', follow_redirects=True)
@@ -92,18 +96,63 @@ class TestUser(unittest.TestCase):
         self.assertIn(b'You are now logged in', rv.data)
 
     def test_invalid_email(self):
+        """test for invalid email"""
         rv = self.login('Bo_wrong@example.com', 'Bo1995')
         self.assertIn(b'Invalid email! Please try again', rv.data)
 
     def test_invalid_password(self):
+        """test for invalid password"""
         self.signup('Bo', 'Theo', 'Bo_theo5@example.com', 'Bo1995', 'Bo1995')
         rv = self.login('Bo_theo5@example.com', 'Bo1905')
         self.assertIn(b'Invalid password! Please try again', rv.data)
 
     def test_logout(self):
+        """test for logout """
         self.signup('Bo', 'Theo', 'Bo_theo5@example.com', 'Bo1995', 'Bo1995')
         rv = self.logout()
         self.assertIn('You are now logged out', rv.data)
+
+    def test_dashboard(self):
+        """test for dashboard page loads"""
+        self.signup('Bo', 'Theo', 'Bo_theo5@example.com', 'Bo1995', 'Bo1995')
+        rv = self.login('Bo_theo5@example.com', 'Bo1995')
+        self.assertIn(b'Create a Recipe Category', rv.data)
+
+    def test_empty_category_dashboard(self):
+        """test for empty category in dashboard"""
+        self.signup('Bo', 'Theo', 'Bo_theo5@example.com', 'Bo1995', 'Bo1995')
+        rv = self.login('Bo_theo5@example.com', 'Bo1995')
+        self.assertIn(b'Create a Recipe Category', rv.data)
+
+    def test_blank_category(self):
+        """test for blank category"""
+        self.signup('Bo', 'Theo', 'Bo_theo5@example.com', 'Bo1995', 'Bo1995')
+        self.login('Bo_theo5@example.com', 'Bo1995')
+        rv = self.category('')
+        self.assertIn(b'Field must be between 1 and 50 characters long.', rv.data)
+
+    def test_add_category(self):
+        """test for addition of category"""
+        self.signup('Bo', 'Theo', 'Bo_theo5@example.com', 'Bo1995', 'Bo1995')
+        self.login('Bo_theo5@example.com', 'Bo1995')
+        rv = self.category('Breakfast')
+        self.assertIn(b'Category created', rv.data)
+
+    def test_edit_category(self):
+        """test for edit category"""
+        self.signup('Bo', 'Theo', 'Bo_theo5@example.com', 'Bo1995', 'Bo1995')
+        self.login('Bo_theo5@example.com', 'Bo1995')
+        self.category('Breakfast')
+        rv = self.edit_category('JunkFood')
+        self.assertIn(b'Category successfully updated', rv.data)
+
+    def test_delete_category(self):
+        """test for delete category"""
+        self.signup('Bo', 'Theo', 'Bo_theo5@example.com', 'Bo1995', 'Bo1995')
+        self.login('Bo_theo5@example.com', 'Bo1995')
+        self.category('JunkFood')
+        rv = self.del_category()
+        self.assertIn(b'successfully deleted category', rv.data)
 
     def test_user_password_hash(self):
         """test if user password is encrypt"""
@@ -113,18 +162,6 @@ class TestUser(unittest.TestCase):
         """test if user is added"""
         self.assertIsInstance(self.michael, User, False)
 
-    def test_category_created(self):
-        """test if category is created"""
-        Categories('user_email', 'HealthyFood')
-        self.assertIn(hash('user_email'), category_data)
-        self.assertIn('HealthyFood', category_data[hash('user_email')][0])
-
-    def test_recipe_category_created(self):
-        """test if recipe created in category"""
-        Categories('user_email', 'HealthyFood')
-        category_name = category_data[hash('user_email')].index('HealthyFood')
-        Recipes('Fruits', 'blah blah blah heat...Eat fruit every morning', category_name, 'user_email')
-        self.assertIn('Fruits', recipe_data[hash('user_email')][category_name][0]['Recipe Name'])
 
 
 
