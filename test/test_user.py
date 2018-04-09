@@ -1,5 +1,5 @@
 import unittest
-from data import User, user_data, Categories, category_data, Recipes, recipe_data
+from data import User, user_data, category_data, recipe_data
 from app.views import app
 
 
@@ -15,6 +15,7 @@ class TestUser(unittest.TestCase):
     def tearDown(self):
         user_data.clear()
         category_data.clear()
+        recipe_data.clear()
 
     def signup(self, first_name, last_name, email, password, confirm):
         return self.client.post('/signup', data=dict(
@@ -42,6 +43,24 @@ class TestUser(unittest.TestCase):
 
     def del_category(self):
         return self.client.post('/delete_category/JunkFood', follow_redirects=True)
+
+    def recipe_dashboard(self,):
+        return self.client.get('/dashboard/JunkFood/dashboard_recipe', follow_redirects=True)
+
+    def create_recipe(self, recipe_name, recipe):
+        return self.client.post('/my_recipe?val=JunkFood', data=dict(
+            recipe_name=recipe_name,
+            recipe=recipe,
+        ), follow_redirects=True)
+
+    def edit_recipe(self, edited_recipe_name, edited_recipe):
+        return self.client.post('/edit_recipe/0?val=JunkFood', data=dict(
+            recipe_name=edited_recipe_name,
+            recipe=edited_recipe
+        ), follow_redirects=True)
+
+    def del_recipe(self):
+        return self.client.post('/delete_recipe/0?val=JunkFood', follow_redirects=True)
 
     def logout(self):
         return self.client.get('/logout', follow_redirects=True)
@@ -154,13 +173,55 @@ class TestUser(unittest.TestCase):
         rv = self.del_category()
         self.assertIn(b'successfully deleted category', rv.data)
 
-    def test_user_password_hash(self):
-        """test if user password is encrypt"""
-        self.assertNotEqual(user_data[hash('user_1@example.com')]['Password'], 'password218')
+    def test_dashboard_recipe_created_with_category(self):
+        """test dashboard recipe with category recipe"""
+        self.signup('Bo', 'Theo', 'Bo_theo5@example.com', 'Bo1995', 'Bo1995')
+        self.login('Bo_theo5@example.com', 'Bo1995')
+        self.category('JunkFood')
+        rv = self.recipe_dashboard()
+        self.assertIn(b'JunkFood', rv.data)
 
-    def test_user_added(self):
-        """test if user is added"""
-        self.assertIsInstance(self.michael, User, False)
+    def test_dashboard_without_recipe(self):
+        """test for dashboard recipe without category recipe"""
+        self.signup('Bo', 'Theo', 'Bo_theo5@example.com', 'Bo1995', 'Bo1995')
+        self.login('Bo_theo5@example.com', 'Bo1995')
+        self.category('JunkFood')
+        rv = self.recipe_dashboard()
+        self.assertIn(b'Please create a category Recipe', rv.data)
+
+    def test_create_recipe_category(self):
+        """test for successful creation of recipe category """
+        self.signup('Bo', 'Theo', 'Bo_theo5@example.com', 'Bo1995', 'Bo1995')
+        self.login('Bo_theo5@example.com', 'Bo1995')
+        self.category('JunkFood')
+        self.recipe_dashboard()
+        rv = self.create_recipe('cakes', 'blah, blah, blah....mix ingredient, heat')
+        self.assertIn(b'Recipe created', rv.data)
+
+    def test_edit_recipe_category(self):
+        """test for update of recipe category """
+        self.signup('Bo', 'Theo', 'Bo_theo5@example.com', 'Bo1995', 'Bo1995')
+        self.login('Bo_theo5@example.com', 'Bo1995')
+        self.category('JunkFood')
+        self.recipe_dashboard()
+        self.create_recipe('cakes', 'blah, blah, blah....mix ingredient, heat')
+        rv = self.edit_recipe('edited cakes', 'edited blah blah blah spoon , heat')
+        self.assertIn(b'Recipe successfully updated', rv.data)
+
+    def test_delete_recipe_category(self):
+        """test for deletion of recipe"""
+        self.signup('Bo', 'Theo', 'Bo_theo5@example.com', 'Bo1995', 'Bo1995')
+        self.login('Bo_theo5@example.com', 'Bo1995')
+        self.category('JunkFood')
+        self.recipe_dashboard()
+        self.create_recipe('cakes', 'blah, blah, blah....mix ingredient, heat')
+        self.edit_recipe('edited cakes', 'edited blah blah blah spoon , heat')
+        rv = self.del_recipe()
+        self.assertIn(b'deleted successfully', rv.data)
+
+
+
+
 
 
 
