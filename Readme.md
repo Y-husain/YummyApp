@@ -1,5 +1,12 @@
 [![Build Status](https://travis-ci.org/Y-husain/YummyApp.svg?branch=master)](https://travis-ci.org/Y-husain/YummyApp)
 [![Coverage Status](https://coveralls.io/repos/github/Y-husain/YummyApp/badge.svg?branch=master)](https://coveralls.io/github/Y-husain/YummyApp?branch=master)
+<a href="YummyApp/LICENSE.md">
+<img class="notice-badge" src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="Badge"/>
+</a>
+<a href="https://www.python.org/dev/peps/pep-0008/">
+<img class="notice-badge" src="https://img.shields.io/badge/code%20style-pep8-orange.svg" alt="Badge"/>
+</a>
+
 <h2>YUMMY RECIPES</h2>
 
 A simple app that uses flask
