@@ -7,5 +7,13 @@
   "test/test_app.py::AppViewTestCase::test_unauthorized_user_access_to_dashboardRecipe": true, 
   "test/test_app.py::AppViewTestCase::test_validate_success_Signup_form": true, 
   "test/test_app.py::TestUser::test_user_password_salt_random": true, 
-  "test/test_user.py::TestUser::test_category_add": true
+  "test/test_user.py::TestUser::test_app_running": true, 
+  "test/test_user.py::TestUser::test_authorized_access_after_login": true, 
+  "test/test_user.py::TestUser::test_category_add": true, 
+  "test/test_user.py::TestUser::test_create_recipe": true, 
+  "test/test_user.py::TestUser::test_dashboard_recipe": true, 
+  "test/test_user.py::TestUser::test_dashboard_recipe_empty": true, 
+  "test/test_user.py::TestUser::test_dashboard_without_category": true, 
+  "test/test_user.py::TestUser::test_login_invalid_password": true, 
+  "test/test_user.py::TestUser::test_sign_up_page": true
 }
