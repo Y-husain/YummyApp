@@ -10,8 +10,8 @@ install:
 
 script:
   - "source .env"
-  - "pytest --with-coverage --cover-package=test --cover-package=app
- && coverage report"
+  - "pytest"
+  - "coverage run --source=app -m pytest  && coverage report"
 
 after_success:
   - "coveralls"
