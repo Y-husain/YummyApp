@@ -154,6 +154,7 @@ class TestUser(unittest.TestCase):
         """test for addition of category"""
         self.signup('Bo', 'Theo', 'Bo_theo5@example.com', 'Bo1995', 'Bo1995')
         self.login('Bo_theo5@example.com', 'Bo1995')
+        self.dashboard()
         rv = self.category('Breakfast')
         self.assertIn(b'Category created', rv.data)
 
@@ -161,7 +162,9 @@ class TestUser(unittest.TestCase):
         """test for edit category"""
         self.signup('Bo', 'Theo', 'Bo_theo5@example.com', 'Bo1995', 'Bo1995')
         self.login('Bo_theo5@example.com', 'Bo1995')
+        self.dashboard()
         self.category('Breakfast')
+        self.dashboard()
         rv = self.edit_category('JunkFood')
         self.assertIn(b'Category successfully updated', rv.data)
 
@@ -169,7 +172,9 @@ class TestUser(unittest.TestCase):
         """test for delete category"""
         self.signup('Bo', 'Theo', 'Bo_theo5@example.com', 'Bo1995', 'Bo1995')
         self.login('Bo_theo5@example.com', 'Bo1995')
+        self.dashboard()
         self.category('JunkFood')
+        self.dashboard()
         rv = self.del_category()
         self.assertIn(b'successfully deleted category', rv.data)
 
@@ -177,7 +182,9 @@ class TestUser(unittest.TestCase):
         """test dashboard recipe with category recipe"""
         self.signup('Bo', 'Theo', 'Bo_theo5@example.com', 'Bo1995', 'Bo1995')
         self.login('Bo_theo5@example.com', 'Bo1995')
+        self.dashboard()
         self.category('JunkFood')
+        self.dashboard()
         rv = self.recipe_dashboard()
         self.assertIn(b'JunkFood', rv.data)
 
@@ -185,7 +192,9 @@ class TestUser(unittest.TestCase):
         """test for dashboard recipe without category recipe"""
         self.signup('Bo', 'Theo', 'Bo_theo5@example.com', 'Bo1995', 'Bo1995')
         self.login('Bo_theo5@example.com', 'Bo1995')
+        self.dashboard()
         self.category('JunkFood')
+        self.dashboard()
         rv = self.recipe_dashboard()
         self.assertIn(b'Please create a category Recipe', rv.data)
 
@@ -193,7 +202,9 @@ class TestUser(unittest.TestCase):
         """test for successful creation of recipe category """
         self.signup('Bo', 'Theo', 'Bo_theo5@example.com', 'Bo1995', 'Bo1995')
         self.login('Bo_theo5@example.com', 'Bo1995')
+        self.dashboard()
         self.category('JunkFood')
+        self.dashboard()
         self.recipe_dashboard()
         rv = self.create_recipe('cakes', 'blah, blah, blah....mix ingredient, heat')
         self.assertIn(b'Recipe created', rv.data)
@@ -202,7 +213,9 @@ class TestUser(unittest.TestCase):
         """test for update of recipe category """
         self.signup('Bo', 'Theo', 'Bo_theo5@example.com', 'Bo1995', 'Bo1995')
         self.login('Bo_theo5@example.com', 'Bo1995')
+        self.dashboard()
         self.category('JunkFood')
+        self.dashboard()
         self.recipe_dashboard()
         self.create_recipe('cakes', 'blah, blah, blah....mix ingredient, heat')
         rv = self.edit_recipe('edited cakes', 'edited blah blah blah spoon , heat')
@@ -212,7 +225,9 @@ class TestUser(unittest.TestCase):
         """test for deletion of recipe"""
         self.signup('Bo', 'Theo', 'Bo_theo5@example.com', 'Bo1995', 'Bo1995')
         self.login('Bo_theo5@example.com', 'Bo1995')
+        self.dashboard()
         self.category('JunkFood')
+        self.dashboard()
         self.recipe_dashboard()
         self.create_recipe('cakes', 'blah, blah, blah....mix ingredient, heat')
         self.edit_recipe('edited cakes', 'edited blah blah blah spoon , heat')

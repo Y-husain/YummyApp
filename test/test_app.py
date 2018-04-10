@@ -61,7 +61,7 @@ class AppViewTestCase(TestCase):
             "email": "Bo_theo@email.com",
             "password": "Bo1995",
         }, follow_redirects=True)
-        self.assertIn('category', login.data)
+        self.assertIn(b'category', login.data)
 
     def test_unauthorized_access_to_category(self):
         unauthorized = self.app.test_client().get('/category', follow_redirects=True)
