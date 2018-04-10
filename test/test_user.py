@@ -129,7 +129,7 @@ class TestUser(unittest.TestCase):
         """test for logout """
         self.signup('Bo', 'Theo', 'Bo_theo5@example.com', 'Bo1995', 'Bo1995')
         rv = self.logout()
-        self.assertIn('You are now logged out', rv.data)
+        self.assertIn(b'You are now logged out', rv.data)
 
     def test_dashboard(self):
         """test for dashboard page loads"""
