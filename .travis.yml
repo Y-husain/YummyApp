@@ -9,7 +9,6 @@ install:
   - "pip install coveralls"
 
 script:
-  - "source .env"
   - "pytest"
   - "coverage run --source=app -m pytest  && coverage report"
 
