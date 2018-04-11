@@ -23,7 +23,7 @@ class Categories:
     def __init__(self, email, category_name):
         global category_data
         global recipe_data
-        self.user_id = hash(email)
+        self.user_id = email
         self.category_name = category_name
 
         try:
@@ -42,7 +42,7 @@ class Recipes:
     def __init__(self, recipe_name, recipe, category_name, email):
         global category_data
         global recipe_data
-        self.user_id = hash(email)
+        self.user_id = email
         self.recipe_name = recipe_name
         self.recipe = recipe
         self.category_name = category_name
