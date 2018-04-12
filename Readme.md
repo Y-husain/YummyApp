@@ -96,7 +96,7 @@ Note: Travis-ci ensures continous integration and runs test automatically for th
 
 ## Deployment
 
-Heroku app coming up
+Heroku app https://yummyrecipeapp2018.herokuapp.com/login
 
 ## Built With
 
