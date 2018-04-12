@@ -160,7 +160,7 @@ def dashboard_recipe(category_name):
 
 class RecipeForm(FlaskForm):
     recipe_name = StringField('Recipe Name', [validators.Length(min=1, max=50)])
-    recipe = TextAreaField('Recipe', [validators.Length(min=2, max=200)])
+    recipe = TextAreaField('Recipe', [validators.Length(min=2, max=2000)])
 
 
 @app.route('/my_recipe', methods=['GET', 'POST'])
