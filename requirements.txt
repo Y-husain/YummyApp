@@ -17,6 +17,7 @@ Flask-Testing
 Flask-WTF
 funcsigs
 futures
+gunicorn
 idna
 ipaddress
 isort
