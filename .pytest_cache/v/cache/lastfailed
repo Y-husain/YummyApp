@@ -11,12 +11,9 @@
   "test/test_user.py::TestUser::test_authorized_access_after_login": true, 
   "test/test_user.py::TestUser::test_category_add": true, 
   "test/test_user.py::TestUser::test_create_recipe": true, 
-  "test/test_user.py::TestUser::test_dashboard": true, 
   "test/test_user.py::TestUser::test_dashboard_recipe": true, 
   "test/test_user.py::TestUser::test_dashboard_recipe_empty": true, 
   "test/test_user.py::TestUser::test_dashboard_without_category": true, 
-  "test/test_user.py::TestUser::test_dashboard_without_recipe": true, 
-  "test/test_user.py::TestUser::test_empty_category_dashboard": true, 
   "test/test_user.py::TestUser::test_login_invalid_password": true, 
   "test/test_user.py::TestUser::test_sign_up_page": true
 }
